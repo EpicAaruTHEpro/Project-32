@@ -3,8 +3,12 @@ const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
-function preload() {
+var score = 0;
+var backgroundImg;
+var backgroundImg1="day.jpg";
 
+function preload() {
+  getBackground();
 }
 
 function setup() {
@@ -63,7 +67,9 @@ function setup() {
 }
 
 function draw() {
-  background(255,255,255);
+  if (backgroundImg) {
+    background(backgroundImg);
+  }
   ground.display();
   polygon.display();
   stand1.display();
@@ -93,7 +99,33 @@ function draw() {
   box23.display();
   box24.display();
   box25.display();
+  box1.score();
+  box2.score();
+  box3.score();
+  box4.score();
+  box5.score();
+  box6.score();
+  box7.score();
+  box8.score();
+  box9.score();
+  box10.score();
+  box11.score();
+  box12.score();
+  box13.score();
+  box14.score();
+  box15.score();
+  box16.score();
+  box17.score();
+  box18.score();
+  box19.score();
+  box20.score();
+  box21.score();
+  box22.score();
+  box23.score();
+  box24.score();
+  box25.score();
   slingShot.display();
+  text("SCORE: "+score,700,40);
 }
 
 function mouseDragged() {
@@ -109,4 +141,20 @@ function keyPressed() {
 		Matter.Body.setPosition(polygon.body, {x: 100 , y: 200});
 		slingShot.attach(polygon.body);
 	}
+}
+
+async function getBackground() {
+  var response = await fetch("http://worldtimeapi.org/api/timezone/America/Detroit");
+  var responseJSON = await response.json();
+  var date = responseJSON.datetime;
+  var hour = date.slice(11,13);
+  if (hour > 6 && hour < 20) {
+    backgroundImg1="day.jpg";
+  }
+
+  else {
+    backgroundImg1="night.jpg";
+  }
+
+  backgroundImg=loadImage(backgroundImg1);
 }

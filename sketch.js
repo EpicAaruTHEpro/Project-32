@@ -144,7 +144,7 @@ function keyPressed() {
 }
 
 async function getBackground() {
-  var response = await fetch("http://worldtimeapi.org/api/timezone/America/Detroit");
+  var response = await fetch("https://worldtimeapi.org/api/timezone/America/Detroit");
   var responseJSON = await response.json();
   var date = responseJSON.datetime;
   var hour = date.slice(11,13);
